@@ -1,0 +1,9 @@
+该文件是python的一些常用库
+
+matplotlib：全面的数据可视化库
+Seaborn：基于matplotlib的数据可视化库
+Plotly：制作交互式、出版品质的图表
+Plotly Express：是Plotly.py的高级封装，为复杂的图表提供了一个简单的语法
+Selenium：web自动化测试工具，也可用于爬虫
+pyppeteer：类似Selenium但更简单，异步方式使用chromium
+
