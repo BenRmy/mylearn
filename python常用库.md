@@ -1,6 +1,7 @@
 # 该文件是python的一些常用库
 
-## 基本工具:
+## 基本工具
+
 pipenv：Python(虚拟)环境和依赖项管理  
 pip、setuptools、wheel：Python的包管理器  
 Jupyter notebook：在浏览器中提供Python基本解释器的所有功能  
@@ -21,6 +22,7 @@ subprocess：调用shell命令
 Queue：队列  
 
 ## 数据处理
+
 NumPy：提供一些数学功能  
 pandas：基于numpy的数据处理和分析库  
 Dask：实现了NumPy阵列的直接替代，可处理大于内存的数据并可以利用多核  
@@ -36,6 +38,7 @@ pickle：数据序列化
 Pyflux：用于预测和分析时间序列  
 
 ## 数据可视化
+
 matplotlib：全面的数据可视化库  
 pyecharts：百度的数据可视化图表库  
 Seaborn：基于matplotlib的数据可视化库  
@@ -45,6 +48,7 @@ Bokeh：交互式数据可视化
 Dash：创建数据可视化的web应用程序  
 
 ## 网络相关
+
 urllib：标准库，包含HTTP请求、响应、URL、错误等的基本操作函数  
 urllib3：标准库，是urllib的补充，功能更全且更安全  
 Requests：简单方便的HTTP请求库  
@@ -60,6 +64,7 @@ Uvicorn：用于生产的Web服务器
 Pattern：网络信息挖掘模块  
 
 ## 爬虫相关
+
 scrapy：用于创建爬虫程序  
 PySpider：网络爬虫系统，可在浏览器中写爬虫脚本  
 Selenium：web自动化测试工具，也可用于爬虫  
@@ -75,6 +80,7 @@ pyquery：类似jquery方式来解析html
 BeautifulSoup：xml和html的解析库，使用css语法  
 
 ## 数据库相关
+
 pymysql：myqsl关系型数据库连接器  
 pymongo：mongo非关系型数据库连接器  
 redis：redis非关系型数据库连接器  
@@ -85,6 +91,7 @@ Peewee：轻量级的ORM，主要是操作关系型数据库
 Blaze：从多种数据库技术中抽象出来，提供了统一界面  
 
 ## 深度学习
+
 jieba：中文分词工具  
 Imbalanced-learn：对机器学习中的不平衡数据进行处理  
 theano：深度学习库，用于优化、定义和评估数值方程和多为数组。基本上是数学表达式的编译器  
@@ -95,15 +102,18 @@ tensorflow：机器学习库，也可以是theano的替代品
 Eli5：使机器学习的结果更加准确  
 
 ## GUI相关库
+
 wxpython和pyQT和thinter：用于python的GUI工具包  
 simpleGUI：简单快速的gui工具包，是thinter的高级封装  
 Remi：gui库，将Python代码转换为HTML界面，只依赖浏览器  
 
 ## 游戏相关
+
 Pygame：2D游戏开发  
 Pyglet：3D动画和游戏创作  
 
 ## 办公相关
+
 PyYAML：读取脚本配置yaml文件  
 xmltodict：xml转dict  
 python-magic： 文件类型检测，libmagic的Python封装  
@@ -112,6 +122,7 @@ openpyxl：读写Excel 2010 xlsx/xlsm/xltx/xltm 文件的库
 PDFMiner：从PDF文档中抽取信息的工具  
 
 ## 其他实用库
+
 chardet：字符编码检测器  
 difflib：对比文本之间的差异  
 fuzzywuzzy：模糊字符串匹配  

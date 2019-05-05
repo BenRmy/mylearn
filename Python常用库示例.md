@@ -1,6 +1,7 @@
 # 以下是Python的一些常用库的使用介绍和示例
 
 ## pipenv
+
 Pipfile是社区拟定的依赖管理文件，用于替代过于简陋的requirements.txt文件。pipenv是Pipfile主要倡导者，主要包含了Pipfile、pip、click、requests和virtualenv。  
 使用格式: pipenv [OPTIONS] COMMAND [ARGS]...
 
@@ -62,10 +63,12 @@ Commands:
   update     运行锁定，然后同步
 
 ## Jupyter notebook
+
 一个交互式的笔记本，支持运行超过40种编程语言。  
-详情见：https://jupyter.org/
+详情见：<https://jupyter.org/>
 
 ## nose
+
 nose的优势：  
 -编写测试更容易。nose可以自动识别继承于unittest.TestCase的测试单元，并执行测试，而且，nose也可以测试非继承于unittest.TestCase的测试单元。nose提供了丰富的API便于编写测试代码。  
 -执行测试更容易。只要遵循一些简单的规则去组织你的类库和测试代码，nose是可以自动识别单元测试的。执行测试是非常耗资源的，但是，一般第一个测试模块被加载后，nose就开始执行测试。  
@@ -83,7 +86,7 @@ Options:
   -c FILES, --config=FILES  从配置文件加载配置。可多次指定  
   -w WHERE, --where=WHERE  在此目录中查找测试[NOSE_WHERE]  
   --py3where=PY3WHERE   在Python 3.x下查找此目录中的测试[NOSE_PY3WHERE]  
-  -m REGEX, --match=REGEX, --testmatch=REGEX  与此正则表达式匹配的文件，目录，函数名称和类名称被视为测试。默认: (?:^|[\b_\./-])[Tt]est[NOSE_TESTMATCH]  
+  -m REGEX, --match=REGEX, --testmatch=REGEX  与此正则表达式匹配的文件，目录，函数名称和类名称被视为测试。默认: `(?:^|[\b_\./-])[Tt]est` [NOSE_TESTMATCH]  
   --tests=NAMES         运行这些测试（以逗号分隔的列表）。这个参数主要来自配置文件;在命令行上，只需传递测试以作为没有开关的附加参数运行。  
   -l DEBUG, --debug=DEBUG  激活一个或多个系统的调试日志记录  
   --debug-log=FILE      将调试消息记录到此文件 (默认: sys.stderr)  
@@ -127,7 +130,7 @@ Options:
   --with-doctest        启用插件Doctest：激活doctest插件以在非测试模块中查找和运行doctests[NOSE_WITH_DOCTEST]  
   --doctest-tests       在测试模块中查找doctests。请注意，类、方法和函数应该具有doctests或非doctest测试，而不是两者。[NOSE_DOCTEST_TESTS]  
   --doctest-extension=EXT  同时在具有此扩展名的文件中查找doctests  [NOSE_DOCTEST_EXTENSION]  
-  --doctest-result-variable=VAR  将变量名称设置为默认值“_”的最后一个解释器命令的结果。可用于避免与用于文本转换的_（）函数冲突[NOSE_DOCTEST_RESULT_VAR]  
+  --doctest-result-variable=VAR  将变量名称设置为默认值“`_`”的最后一个解释器命令的结果。可用于避免与用于文本转换的_（）函数冲突[NOSE_DOCTEST_RESULT_VAR]  
   --doctest-fixtures=SUFFIX  在模块中查找doctest文件的fixture，并将此名称附加到doctest文件的基本名称  
   --doctest-options=OPTIONS  指定要传递给doctest的选项。  
   --with-isolation      启用插件IsolationPlugin：激活隔离插件以将外部模块的更改隔离到单个测试模块或包。隔离插件在每个测试模块或包运行到测试之前的状态后重置sys.modules的内容。请注意，此插件不应与coverage插件一起使用，或者在模块重新加载可能产生不良副作用的任何其他情况下使用。[NOSE_WITH_ISOLATION]  
@@ -147,11 +150,14 @@ Options:
 
 ## concurrent.futures
 
+这是一些未来库
 
 ## Scrapy、PySpider
+
 都是爬虫框架
 
 ## Arrow
+
 提供了一种合理的，人性化的方法来创建，操作，格式化和转换日期，时间和时间戳。使用更少的导入和更少的代码来处理日期和时间。  
 获取当前本地时间：arrow.now()  
 获取当前UTC时间：arrow.utcnow()  
@@ -168,6 +174,3 @@ arrow对象属性：datetime,timestamp,native,tzinfo
 格式化输出：a.format([format_string])  
 人性化输出(xx之前、xx之后)：a.humanize(locale),locale参数可以指定地区语言  
 时间范围和区间：a.span(string), a.floor(), a.ceil()
-
-
-
