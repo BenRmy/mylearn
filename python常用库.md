@@ -11,9 +11,9 @@ cProfile：性能测试模块
 threading：标准库，多线程库，少用  
 gevent、eventlet：异步库  
 multiprocessing：标准库，多进程库，也包含了多线程，可以使用多个处理器  
-concurrent.futures：标准库，提供一些未列入标准的使用功能，包括进程池/线程池相关 
-asyncio：标准库中的协程库
-trio： 基于asyncio的封装库，用于异步并发和I/O
+concurrent.futures：标准库，提供一些未列入标准的使用功能，包括进程池/线程池相关  
+asyncio：标准库中的协程库  
+trio： 基于asyncio的封装库，用于异步并发和I/O  
 pypy/psyco/cython/ctypes/cffi：与C语言相关库  
 celery、luigi：分布式任务管理库  
 logging：日志库  
