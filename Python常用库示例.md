@@ -5,7 +5,7 @@
 Pipfile是社区拟定的依赖管理文件，用于替代过于简陋的requirements.txt文件。pipenv是Pipfile主要倡导者，主要包含了Pipfile、pip、click、requests和virtualenv。  
 使用格式: pipenv [OPTIONS] COMMAND [ARGS]...
 
-Options:
+Options:  
   --where             输出项目目录信息  
   --venv              输出虚拟环境信息  
   --py                输出Python解释器信息  
@@ -24,7 +24,7 @@ Options:
   --version           显示版本并退出  
   -h, --help          显示此帮助消息并退出  
 
-使用示例:
+使用示例:  
    使用Python 3.7创建一个新项目:  
    $ pipenv --python 3.7
 
@@ -49,7 +49,7 @@ Options:
    使用较低级别的pip命令:  
    $ pipenv run pip freeze
 
-Commands:
+Commands:  
   check      检查Pipfile中提供的安全漏洞和PEP 508标记  
   clean      卸载Pipfile.lock中未指定的所有软件包  
   graph      显示当前安装的依赖关系图信息  
@@ -76,7 +76,7 @@ nose的优势：
 -做你想做的事情更容易。nose拥有很多内置的插件帮助进行暑输出抓取、错误查找、代码覆盖、文档测试（doctest）等等。同样，可以自定义开发插件来完成你想要做的事情。  
 使用格式: nosetests [options]
 
-Options:
+Options:  
   -h, --help            显示此帮助消息并退出  
   -V, --version         输出nose版本并退出  
   -p, --plugins         可用插件的输出列表并退出。可结合-v以获得更多细节  
