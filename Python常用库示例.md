@@ -155,9 +155,12 @@ threading模块是Python里面常用的线程模块，多线程处理任务对�
 线程优点：共享内存，IO操作时相当于并发操作  
 线程缺点：抢占资源时需要锁  
 线程不是越多越好，需要具体分析，因为线程切换也需要时间  
-#### threading模块可以创建多个线程，不过由于GIL锁的存在，Python在多线程里面其实是快速切换。所以一般用于IO密集型应用。  
+
+### threading模块可以创建多个线程，不过由于GIL锁的存在，Python在多线程里面其实是快速切换。所以一般用于IO密集型应用。
+
 示例：
-```
+
+```#!/usr/bin/python3
 import time
 import threading
 
@@ -179,14 +182,20 @@ t.start()
 t = threading.Thread(target=ff, args=(111, 112))
 t.start()
 ```
+
 在线程里面setDaemon（）和join（）方法都是常用的，他们的区别如下：
+
 + join ()方法：主线程A中，创建了子线程B，并且在主线程A中调用了B.join()，那么，主线程A会在调用的地方等待，直到子线程B完成操作后，才可以接着往下执行，那么在调用这个线程时可以使用被调用线程的join方法。join([timeout]) 里面的参数时可选的，代表线程运行的最大时间，即如果超过这个时间，不管这个此线程有没有执行完毕都会被回收，然后主线程或函数都会接着执行的，如果线程执行时间小于参数表示的时间，则接着执行，不用一定要等待到参数表示的时间。
+
 + setDaemon()方法。主线程A中，创建了子线程B，并且在主线程A中调用了B.setDaemon(),这个的意思是，把主线程A设置为守护线程，这时候，要是主线程A执行结束了，就不管子线程B是否完成,一并和主线程A退出.这就是setDaemon方法的含义，这基本和join是相反的。此外，还有个要特别注意的：必须在start() 方法调用之前设置，如果不设置为守护线程，程序会被无限挂起，只有等待了所有线程结束它才结束。
-#### 锁
+
+### 线程锁
+
 在多线程处理任务的时候，在同时操作一个数据的时候可能会造成脏数据，这时候就出现了锁的概念，也就是有一个线程在操作该数据的时候，就把该数据锁上，防止别的线程操作，操作完了再释放锁。  
 一个锁是对于一个资源而言的，每个资源可对应一个锁，即可以存在多个资源锁。  
 示例：
-```
+
+```#!/usr/bin/python3
 import threading
 import time
 
@@ -216,11 +225,15 @@ if "__main__" == __name__:
     for t in ThreadList:
         t.join()
 ```
+
 这种类型的加锁可能会导致死锁发生，Threading模块中，也有一个类，RLock，称之为可重入锁。该锁对象内部维护着一个Lock和一个counter对象。counter对象记录了acquire的次数，使得资源可以被多次require。最后，当所有RLock被release后，其他线程才能获取资源。在同一个线程中，RLock.acquire可以被多次调用，利用该特性，可以解决部分死锁问题。
-#### event方法
+
+### event方法
+
 该方法的具体用法是给线程设置红绿灯，红灯表示停，绿灯表示运行。比如等待输入。
 示例：
-```
+
+```#!/usr/bin/python3
 import threading
 import time
 
@@ -252,6 +265,7 @@ if data == 'True':
 进程缺点：耗费资源（每个进程有单独的内存空间）  
 进程不是越多越好，一般：进程数=CPU数  
 在使用这些共享API的时候，要注意以下几点：
+
 + 在UNIX平台上，当某个进程终结之后，该进程需要被其父进程调用wait，否则进程成为僵尸进程(Zombie)。所以，有必要对每个Process对象调用join()方法 (实际上等同于wait)。对于多线程来说，由于只有一个进程，所以不存在此必要性。
 + multiprocessing提供了threading包中没有的IPC(比如Pipe和Queue)，效率上更高。应优先考虑Pipe和Queue，避免使用Lock/Event/Semaphore/Condition等同步方式 (因为它们占据的不是用户进程的资源)。
 + 多进程应该避免共享资源。在多线程中，可以比较容易地共享资源，比如使用全局变量或者传递参数。在多进程情况下，由于每个进程有自己独立的内存空间，以上方法并不合适。此时可以通过共享内存和Manager的方法来共享资源。但这样做提高了程序的复杂度，并因为同步的需要而降低了程序的效率。
@@ -260,7 +274,8 @@ if data == 'True':
 
 简单多进程示例：  
 方法一：直接传入要运行的方法/函数
-```
+
+```#!/usr/bin/python3
 from multiprocessing import Process
 import time
 
@@ -272,8 +287,10 @@ if __name__ == '__main__':
         p = Process(target=foo, args=(i,))
         p.start()
 ```
-方法二：从Process继承并覆盖run()  
-```
+
+方法二：从Process继承并覆盖run()
+
+```#!/usr/bin/python3
 rom multiprocessing import Process
 import time
 
@@ -291,37 +308,46 @@ if __name__ == '__main__':
         p = MyProcess(i)
         p.start()
 ```
-#### Process类
+
+### Process类
+
 构造方法：  
 Process([group [, target [, name [, args [, kwargs]]]]])
-+ group: 线程组，目前还没有实现，库引用中提示必须是None； 
-+ target: 要执行的方法； 
-+ name: 进程名； 
+
++ group: 线程组，目前还没有实现，库引用中提示必须是None
++ target: 要执行的方法
++ name: 进程名
 + args/kwargs: 要传入方法的参数。
 
 实例方法：
-+ is_alive()：返回进程是否在运行。
-+ join([timeout])：阻塞当前上下文环境的进程，直到调用此方法的进程终止或到达指定的timeout（可选参数）。
+
++ is_alive()：返回进程是否在运行
++ join([timeout])：阻塞当前上下文环境的进程，直到调用此方法的进程终止或到达指定的timeout（可选参数）
 + start()：进程准备就绪，等待CPU调度
 + run()：strat()调用run方法，如果实例进程时未制定传入target，这star执行t默认run()方法。
 + terminate()：不管任务是否完成，立即停止工作进程
 
 属性：
+
 + authkey
 + daemon：和线程的setDeamon功能一样
 + exitcode(进程在运行时为None、如果为–N，表示被信号N结束）
 + name：进程名字。
 + pid：进程号。
-#### Pool类
+
+### Pool类
+
 进程池内部维护一个进程序列，当使用时，则去进程池中获取一个进程，如果进程池序列中没有可供使用的进进程，那么程序就会等待，直到进程池中有可用进程为止。进程池设置最好等于CPU核心数量。  
 构造方法：  
 Pool([processes[, initializer[, initargs[, maxtasksperchild[, context]]]]])
+
 + processes ：使用的工作进程的数量，如果processes是None那么使用 os.cpu_count()返回的数量。
 + initializer： 如果initializer是None，那么每一个工作进程在开始的时候会调用initializer(*initargs)。
 + maxtasksperchild：工作进程退出之前可以完成的任务数，完成后用一个新的工作进程来替代原进程，来让闲置的资源被释放。maxtasksperchild默认是None，意味着只要Pool存在工作进程就会一直存活。
 + context: 用在制定工作进程启动时的上下文，一般使用 multiprocessing.Pool() 或者一个context对象的Pool()方法来创建一个池，两种方法都适当的设置了context
   
 实例方法：
+
 + apply(func[, args[, kwds]])：同步进程池
 + apply_async(func[, args[, kwds[, callback[, error_callback]]]]) ：异步进程池
 + close() ： 关闭进程池，阻止更多的任务提交到pool，待任务完成后，工作进程会退出。
@@ -329,7 +355,8 @@ Pool([processes[, initializer[, initargs[, maxtasksperchild[, context]]]]])
 + join() : wait工作线程的退出，在调用join()前，必须调用close() or terminate()。这样是因为被终止的进程需要被父进程调用wait（join等价与wait），否则进程会成为僵尸进程。pool.join()必须使用在
 
 异步进程池示例：  
-```
+
+```#!/usr/bin/python3
 from multiprocessing import Pool
 import time
 
@@ -355,8 +382,10 @@ if __name__ == '__main__':
     t = t_end-t_start
     print('the program time is :%s' % t)
 ```
+
 同步进程池示例：  
-```
+
+```#!/usr/bin/python3
 from multiprocessing import Process, Pool
 import time
 
@@ -379,8 +408,10 @@ if __name__ == '__main__':
     t = t_end-t_start
     print('the program time is :%s' % t)
 ```
+
 异步进程池使用get()方法获得进程执行结果值：  
-```
+
+```#!/usr/bin/python3
 from multiprocessing import Pool
 import time
 
@@ -411,19 +442,25 @@ if __name__ == '__main__':
     t = t_end-t_start
     print('the program time is :%s' % t)
 ```
-#### 进程数据共享
+
+### 进程数据共享
+
 进程各自持有一份数据，默认无法共享数据。可以使用Manager或第三方应用作为桥梁来共享数据。
 
 ## concurrent.futures
 
-Python标准库提供了threading和multiprocessing模块编写相应的多线程/多进程代码，但是当项目达到一定的规模，频繁创建/销毁进程或者线程是非常消耗资源的，这个时候就要编写线程池/进程池，以空间换时间。但从Python3.2开始，标准库提供了concurrent.futures模块，它提供了ThreadPoolExecutor和ProcessPoolExecutor两个类，实现了对threading和multiprocessing的进一步抽象，对编写线程池/进程池提供了直接的支持。  
-#### Executor和Future
+Python标准库提供了threading和multiprocessing模块编写相应的多线程/多进程代码，但是当项目达到一定的规模，频繁创建/销毁进程或者线程是非常消耗资源的，这个时候就要编写线程池/进程池，以空间换时间。但从Python3.2开始，标准库提供了concurrent.futures模块，它提供了ThreadPoolExecutor和ProcessPoolExecutor两个类，实现了对threading和multiprocessing的进一步抽象，对编写线程池/进程池提供了直接的支持。
+
+### Executor和Future
+
 + concurrent.futures模块的基础是Exectuor，Executor是一个抽象类，它不能被直接使用。但是它提供的两个子类ThreadPoolExecutor和ProcessPoolExecutor却是非常有用，两者分别被用来创建线程池和进程池的代码。可以将相应的tasks直接放入线程池/进程池，不需要维护Queue来操心死锁的问题，线程池/进程池会自动帮我们调度。
 + Future这个概念可以把它理解为一个在未来完成的操作，这是异步编程的基础，传统编程模式下比如操作queue.get的时候，在等待返回结果之前会产生阻塞，cpu不能让出来做其他事情，而Future的引入帮助我们在等待的这段时间可以完成其他的操作。
 
-#### 使用submit来操作线程池/进程池 
-线程池示例：   
-```
+### 使用submit来操作线程池/进程池
+
+线程池示例：  
+
+```#!/usr/bin/python3
 # 线程池：
 from concurrent.futures import ThreadPoolExecutor
 import urllib.request
@@ -443,9 +480,11 @@ for url in URLS:
 
 print('主线程')
 ```
+
 使用submit方法来往线程池中加入一个task，submit返回一个Future对象。由于线程池异步提交了任务，主线程并不会等待线程池里创建的线程执行完毕，所以执行了print('主线程')，相应的线程池中创建的线程并没有执行完毕，故future.done()返回结果为False。  
 进程池示例：  
-```
+
+```#!/usr/bin/python3
 # 进程池
 from concurrent.futures import ProcessPoolExecutor
 import urllib.request
@@ -463,10 +502,13 @@ if __name__ == '__main__':  # 要加main
         print(future.done())
     print('主线程')
 ```
-#### 使用map来操作线程池/进程池
+
+### 使用map来操作线程池/进程池
+
 除了submit，Exectuor还提供了map方法。  
 示例：
-```
+
+```#!/usr/bin/python3
 from concurrent.futures import ThreadPoolExecutor
 import urllib.request
 URLS = ['http://www.163.com', 'https://www.baidu.com/', 'https://github.com/']
@@ -481,12 +523,16 @@ executor.map(load_url, URLS)
 
 print('主线程')
 ```
+
 map是按照URLS列表元素的顺序返回的，并且写出的代码更加简洁直观。
-#### wait方法
+
+### wait方法
+
 wait方法接会返回一个tuple(元组)，tuple中包含两个set(集合)，一个是completed(已完成的)另外一个是uncompleted(未完成的)。使用wait方法的一个优势就是获得更大的自由度，它接收三个参数FIRST_COMPLETED, FIRST_EXCEPTION 和ALL_COMPLETE，默认设置为ALL_COMPLETED。  
 如果采用默认的ALL_COMPLETED，程序会阻塞直到线程池里面的所有任务都完成，再执行主线程。  
 示例：  
-```
+
+```#!/usr/bin/python3
 from concurrent.futures import ThreadPoolExecutor, wait, as_completed
 import urllib.request
 URLS = ['http://www.163.com', 'https://www.baidu.com/', 'https://github.com/']
@@ -505,9 +551,11 @@ print(wait(f_list))
 
 print('主线程')
 ```
+
 如果采用FIRST_COMPLETED参数，程序并不会等到线程池里面所有的任务都完成。  
 示例：
-```
+
+```#!/usr/bin/python3
 from concurrent.futures import ThreadPoolExecutor, wait, as_completed
 import urllib.request
 URLS = ['http://www.163.com', 'https://www.baidu.com/', 'https://github.com/']
@@ -526,8 +574,10 @@ print(wait(f_list, return_when='FIRST_COMPLETED'))
 
 print('主线程')
 ```
+
 线程池/进程池应用：  
-```
+
+```#!/usr/bin/python3
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 import requests
 import time
@@ -561,10 +611,6 @@ if __name__ == '__main__':
     p.shutdown()  # 相当于进程池里的close和join
     print('主', os.getpid())
 ```
-
-## Scrapy、PySpider
-
-都是爬虫框架
 
 ## Arrow
 
