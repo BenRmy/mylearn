@@ -19,7 +19,7 @@ celery、luigi：分布式任务管理库
 logging：日志库  
 docopt、argparse：参数解析库  
 itertools：迭代器相关  
-functools：主要用于高阶函数（返回其他函数的函数），任何可调用对象都可以被视为可用于此模块  
+functools：主要用于高阶函数，任何可调用对象都可以被视为可用于此模块  
 subprocess：调用shell命令  
 Queue：队列  
 
@@ -30,7 +30,7 @@ pandas：基于numpy的数据处理和分析库
 Dask：实现了NumPy阵列的直接替代，可处理大于内存的数据并可以利用多核  
 scipy：Python的算法和数学工具库  
 SymPy：代数评测、差异化、扩展、复数等等  
-sklearn：机器学习  
+scikit-learn：机器学习  
 nltk、pattern：语言处理工具  
 pyopencl、pyopengl、pycuda：利用GPU让numpy做复杂任务更加强更快  
 Pillow：图像处理库  
