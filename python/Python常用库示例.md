@@ -550,25 +550,6 @@ if __name__ == '__main__':
     print('主', os.getpid())
 ```
 
-## Arrow
-
-提供了一种合理的，人性化的方法来创建，操作，格式化和转换日期，时间和时间戳。使用更少的导入和更少的代码来处理日期和时间。  
-获取当前本地时间：arrow.now()  
-获取当前UTC时间：arrow.utcnow()  
-将时间戳转化为arrow对象，其中时间戳可以是int，float或者可以转化为float的字符串：arrow.get(timestamp)  
-将字符串转换为arrow对象：arrow.get(string[,format_string])  
-示例：arrow.get('2018-02-24 12:30:45', 'YYYY-MM-DD HH:mm:ss')  
-遵循ISO-8601的字符串不需要格式字符串参数即可转换：arrow.get('2018-02-24T13:00:00.000-07:00')  
-从字符串中通过格式参数搜索时间：arrow.get('June was born in May 1980', 'MMMM YYYY')  
-直接创建arrow对象：arrow.get(2018, 2, 24)  
-arrow对象属性：datetime,timestamp,native,tzinfo  
-获取datetime对象的值：a.hour  
-时间推移，shift方法获取某个时间之前或之后的时间,关键字参数为years,months,weeks,days,hours，seconds，microseconds：a.shift(**kwargs)  
-时间替换，返回一个被替换后的arrow对象，原对象不变：a.replace(**kwargs)  
-格式化输出：a.format([format_string])  
-人性化输出(xx之前、xx之后)：a.humanize(locale),locale参数可以指定地区语言  
-时间范围和区间：a.span(string), a.floor(), a.ceil()
-
 ## logging日志库
 
 logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等。  
